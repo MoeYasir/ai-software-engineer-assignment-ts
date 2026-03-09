@@ -61,3 +61,17 @@ Create `EXPLANATION.md` (max 250 words) containing:
 ## Submission
 
 - Submit a public GitHub repository URL containing your solution to the Google form link provided.
+
+## Run tests locally
+
+Install dependencies and run the tests:
+
+`npm install`
+`npm test`
+
+## Run tests with Docker
+
+Build the Docker image and run the tests:
+
+`docker build -t ai-assignment-tests .`
+`docker run --rm ai-assignment-tests`
