@@ -5,7 +5,7 @@ import { describe, test, expect } from "vitest";
 describe("HttpClient OAuth2 behavior", () => {
   test("api=true sets Authorization header when token is valid", () => {
     const c = new HttpClient();
-    c.oauth2Token = new OAuth2Token("ok", Math.floor(Date.now() / 1000) + 3600);
+    c.oauth2Token = new OAuth2Token("ok", Math.floor(Date.now() / 1000) + 3600); // in minutes it's 60 minutes
 
     const resp = c.request("GET", "/me", { api: true });
 
@@ -24,7 +24,7 @@ describe("HttpClient OAuth2 behavior", () => {
   test("api=true refreshes when token is a plain object", () => {
     // This is the key failing case.
     const c = new HttpClient();
-    c.oauth2Token = { accessToken: "stale", expiresAt: 0 };
+    c.oauth2Token = { accessToken: "stale", expiresAt: 0};
 
     const resp = c.request("GET", "/me", { api: true });
 

@@ -1,0 +1,26 @@
+{
+  "name": "ai-software-engineer-assignment-ts",
+  "version": "1.0.0",
+  "description": "This assignment evaluates your ability to:",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoeYasir/ai-software-engineer-assignment-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MoeYasir/ai-software-engineer-assignment-ts/issues"
+  },
+  "homepage": "https://github.com/MoeYasir/ai-software-engineer-assignment-ts#readme",
+  "dependencies": {
+    "vitest": "4.0.18"
+  }
+}

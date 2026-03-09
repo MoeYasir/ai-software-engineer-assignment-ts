@@ -11,7 +11,7 @@ export class HttpClient {
   request(
     method: string,
     path: string,
-    opts?: { api?: boolean; headers?: Record<string, string> }
+    opts?: { api?: boolean; headers?: Record<string, string> },
   ): { method: string; path: string; headers: Record<string, string> } {
     const api = opts?.api ?? false;
     const headers = opts?.headers ?? {};
@@ -23,6 +23,17 @@ export class HttpClient {
         (this.oauth2Token instanceof OAuth2Token && this.oauth2Token.expired)
       ) {
         this.refreshOAuth2();
+      } else if (
+        !(this.oauth2Token instanceof OAuth2Token) &&
+        this.oauth2Token.accessToken
+      ) {
+        const token = new OAuth2Token(
+          this.oauth2Token.accessToken as string,
+          this.oauth2Token.expiresAt as number,
+        );
+        if (token.expired) {
+          this.refreshOAuth2();
+        }
       }
 
       if (this.oauth2Token instanceof OAuth2Token) {
