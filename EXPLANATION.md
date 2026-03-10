@@ -15,3 +15,11 @@ The fix adds handling for the plain object token case. If the token is not an `O
 ## One realistic case / edge case your tests still do not cover
 
 The tests do not cover the case where `oauth2Token` is a malformed plain object, for example missing `accessToken` or `expiresAt`, or containing values of the wrong type. In a real system, this could happen if token data is restored from storage in an invalid format.
+
+
+
+## Write tests that reproduce it (tests should fail on the current code)
+Here is the scenario where the tests fail:
+<img width="1853" height="1060" alt="Image" src="https://github.com/user-attachments/assets/0d6c358a-5500-4412-8400-340bdd09f830" />
+And here all the tests passes:
+<img width="1853" height="1060" alt="Image" src="https://github.com/user-attachments/assets/32c590f1-0213-4bc7-86d8-008a0f130015" />
