@@ -21,6 +21,18 @@ describe("HttpClient OAuth2 behavior", () => {
     expect(resp.headers.Authorization).toBe("Bearer fresh-token");
   });
 
+  test("api=true uses a valid plain object token", () => {
+    const c = new HttpClient();
+    c.oauth2Token = {
+      accessToken: "plain-object",
+      expiresAt: Math.floor(Date.now() / 1000) + 3600,
+    };
+
+    const resp = c.request("GET", "/me", { api: true });
+
+    expect(resp.headers.Authorization).toBe("Bearer plain-object");
+  });
+
   test("api=true refreshes when token is a plain object", () => {
     // This is the key failing case.
     const c = new HttpClient();
