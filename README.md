@@ -38,8 +38,7 @@ There is a bug somewhere in this repository.
 
 Your tasks:
 
-- Identify the bug through reading code and/or running tests.
-- Write tests that reproduce the bug (tests should fail on the current code).
+- Identify the bug.
 - Apply the smallest possible fix to make the tests pass.
 - Keep the change minimal and reviewable (no refactors).
 
@@ -50,6 +49,37 @@ Your tasks:
 - Do not introduce extra tooling unless required.
 - You may add tests and the smallest code change needed to fix the bug.
 
+### 5) EXPLANATION.md (required)
+
+Create `EXPLANATION.md` (max 250 words) containing:
+
+- **What was the bug?**
+- **Why did it happen?**
+- **Why does your fix solve it?**
+- **One realistic case / edge case your tests still don’t cover**
+
 ## Submission
 
 - Submit a public GitHub repository URL containing your solution to the Google form link provided.
+
+## Run locally
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Run the test suite:
+   ```bash
+   npm test
+   ```
+
+## Run with Docker
+
+1. Build the image:
+   ```bash
+   docker build -t ai-software-engineer-assignment-ts .
+   ```
+2. Run the tests in the container:
+   ```bash
+   docker run --rm ai-software-engineer-assignment-ts
+   ```

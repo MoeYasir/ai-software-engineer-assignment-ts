@@ -1,6 +1,22 @@
 import { OAuth2Token } from "./tokens";
 export type TokenState = OAuth2Token | Record<string, unknown> | null;
 
+function toOAuth2Token(token: TokenState): OAuth2Token | null {
+  if (token instanceof OAuth2Token) {
+    return token;
+  }
+
+  if (
+    token &&
+    typeof token.accessToken === "string" &&
+    typeof token.expiresAt === "number"
+  ) {
+    return new OAuth2Token(token.accessToken, token.expiresAt);
+  }
+
+  return null;
+}
+
 export class HttpClient {
   oauth2Token: TokenState = null;
 
@@ -17,12 +33,12 @@ export class HttpClient {
     const headers = opts?.headers ?? {};
 
     if (api) {
-      // BUG: truthiness + instanceof check misses the "plain object" token case.
-      if (
-        !this.oauth2Token ||
-        (this.oauth2Token instanceof OAuth2Token && this.oauth2Token.expired)
-      ) {
+      const token = toOAuth2Token(this.oauth2Token);
+
+      if (!token || token.expired) {
         this.refreshOAuth2();
+      } else {
+        this.oauth2Token = token;
       }
 
       if (this.oauth2Token instanceof OAuth2Token) {
